@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shubhra Shankha Roy — Cloud & DevOps Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #0d0f14;
+    --surface:   #13161e;
+    --card:      #181c27;
+    --border:    #232840;
+    --azure:     #0ea5e9;
+    --azure-dim: #0369a1;
+    --gold:      #f59e0b;
+    --gold-dim:  #92400e;
+    --text:      #e8eaf2;
+    --muted:     #8892b0;
+    --subtle:    #4a5568;
+    --white:     #ffffff;
+    --green:     #10b981;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Syne', sans-serif;
+    line-height: 1.2;
+  }
+
+  a { color: var(--azure); text-decoration: none; transition: color .2s; }
+  a:hover { color: var(--gold); }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: .4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(13,15,20,.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: .05em;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--azure); }
+
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--muted);
+    font-size: .875rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--azure); }
+
+  .nav-cta {
+    background: var(--azure);
+    color: #fff !important;
+    padding: .45rem 1.1rem;
+    border-radius: 6px;
+    font-size: .8rem !important;
+    font-weight: 600 !important;
+    letter-spacing: .06em !important;
+    transition: background .2s, transform .15s !important;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: #000 !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(14,165,233,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(14,165,233,.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(14,165,233,.12) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    pointer-events: none;
+  }
+  .hero-glow2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(245,158,11,.07) 0%, transparent 70%);
+    bottom: -100px; left: -100px;
+    pointer-events: none;
+  }
+
+  .hero-content { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: rgba(14,165,233,.1);
+    border: 1px solid rgba(14,165,233,.3);
+    padding: .35rem .85rem;
+    border-radius: 100px;
+    font-size: .78rem;
+    font-weight: 500;
+    color: var(--azure);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp .8s ease both;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(.8); }
+  }
+
+  .hero-name {
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.0;
+    animation: fadeUp .8s .1s ease both;
+  }
+  .hero-name .accent { color: var(--azure); }
+
+  .hero-title {
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    color: var(--gold);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin: .75rem 0 1.5rem;
+    animation: fadeUp .8s .2s ease both;
+  }
+
+  .hero-summary {
+    max-width: 620px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    animation: fadeUp .8s .3s ease both;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp .8s .4s ease both;
+  }
+
+  .btn-primary {
+    background: var(--azure);
+    color: #fff;
+    padding: .75rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: .9rem;
+    letter-spacing: .04em;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 0 20px rgba(14,165,233,.3);
+  }
+  .btn-primary:hover {
+    background: #38bdf8;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(14,165,233,.5);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: .75rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: .9rem;
+    transition: border-color .2s, color .2s, transform .15s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--azure);
+    color: var(--azure);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    animation: fadeUp .8s .5s ease both;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--azure); }
+  .stat-label {
+    font-size: .78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-top: .25rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 5rem 2.5rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--azure);
+    margin-bottom: .75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 2px;
+    background: var(--azure);
+    border-radius: 1px;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .section-title .accent { color: var(--azure); }
+
+  .section-sub {
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--surface); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .highlight-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: border-color .2s, transform .2s;
+  }
+  .highlight-card:hover {
+    border-color: var(--azure);
+    transform: translateY(-3px);
+  }
+  .highlight-icon {
+    font-size: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .highlight-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
+    color: var(--white);
+    margin-bottom: .25rem;
+  }
+  .highlight-desc {
+    font-size: .8rem;
+    color: var(--muted);
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg); }
+
+  .skills-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+  .skill-category {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: border-color .25s, transform .2s;
+  }
+  .skill-category:hover { border-color: rgba(14,165,233,.5); transform: translateY(-4px); }
+
+  .skill-cat-label {
+    font-family: 'Syne', sans-serif;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .skill-tag {
+    background: rgba(14,165,233,.08);
+    border: 1px solid rgba(14,165,233,.2);
+    color: var(--azure);
+    font-size: .78rem;
+    font-weight: 500;
+    padding: .3rem .75rem;
+    border-radius: 100px;
+    transition: background .2s, border-color .2s;
+  }
+  .skill-tag:hover { background: rgba(14,165,233,.2); border-color: var(--azure); }
+  .skill-tag.secondary {
+    background: rgba(245,158,11,.06);
+    border-color: rgba(245,158,11,.2);
+    color: var(--gold);
+  }
+  .skill-tag.secondary:hover { background: rgba(245,158,11,.15); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--surface); }
+
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--azure), var(--azure-dim), transparent);
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 2.5rem;
+    padding-left: 60px;
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute;
+    left: 11px;
+    top: 6px;
+    width: 20px; height: 20px;
+    background: var(--bg);
+    border: 2px solid var(--azure);
+    border-radius: 50%;
+    transition: background .2s, box-shadow .2s;
+  }
+  .timeline-item:hover .timeline-dot {
+    background: var(--azure);
+    box-shadow: 0 0 12px rgba(14,165,233,.6);
+  }
+  .timeline-dot.current { background: var(--azure); box-shadow: 0 0 12px rgba(14,165,233,.5); }
+
+  .timeline-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    flex: 1;
+    transition: border-color .2s, transform .2s;
+  }
+  .timeline-card:hover { border-color: rgba(14,165,233,.4); transform: translateX(4px); }
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: .75rem;
+  }
+
+  .tl-company {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+  .tl-role {
+    color: var(--azure);
+    font-size: .9rem;
+    font-weight: 500;
+    margin-top: .15rem;
+  }
+  .tl-period {
+    background: rgba(245,158,11,.1);
+    border: 1px solid rgba(245,158,11,.25);
+    color: var(--gold);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .05em;
+    padding: .25rem .7rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .tl-period.current {
+    background: rgba(16,185,129,.1);
+    border-color: rgba(16,185,129,.3);
+    color: var(--green);
+  }
+
+  .tl-bullets { list-style: none; margin-top: .75rem; }
+  .tl-bullets li {
+    color: var(--muted);
+    font-size: .88rem;
+    line-height: 1.65;
+    padding: .2rem 0 .2rem 1.2rem;
+    position: relative;
+  }
+  .tl-bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--azure);
+    font-size: .75rem;
+    top: .3rem;
+  }
+
+  .metric {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications { background: var(--bg); }
+
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    cursor: default;
+  }
+  .cert-card:hover {
+    border-color: var(--azure);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(14,165,233,.12);
+  }
+
+  .cert-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .cert-icon.azure-icon { background: rgba(14,165,233,.15); }
+  .cert-icon.hashi-icon { background: rgba(245,158,11,.1); }
+  .cert-icon.linux-icon { background: rgba(16,185,129,.1); }
+
+  .cert-info { min-width: 0; }
+  .cert-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: .85rem;
+    color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cert-issuer {
+    font-size: .75rem;
+    color: var(--muted);
+    margin-top: .15rem;
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  #achievements { background: var(--surface); }
+
+  .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+  .ach-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .2s, transform .2s;
+  }
+  .ach-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .ach-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--azure));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s ease;
+  }
+  .ach-card:hover::before { transform: scaleX(1); }
+
+  .ach-icon { font-size: 1.8rem; margin-bottom: .75rem; }
+  .ach-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: .5rem;
+  }
+  .ach-desc { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+  .ach-org {
+    display: inline-block;
+    margin-top: .75rem;
+    font-size: .73rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── COMMUNITY ── */
+  #community { background: var(--bg); }
+
+  .community-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+  .community-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: border-color .2s, transform .2s;
+  }
+  .community-card:hover { border-color: rgba(14,165,233,.5); transform: translateY(-4px); }
+
+  .comm-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: .25rem .65rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+  .comm-badge.speaking { background: rgba(14,165,233,.1); color: var(--azure); border: 1px solid rgba(14,165,233,.25); }
+  .comm-badge.mentoring { background: rgba(245,158,11,.1); color: var(--gold); border: 1px solid rgba(245,158,11,.25); }
+  .comm-badge.reviewing { background: rgba(16,185,129,.1); color: var(--green); border: 1px solid rgba(16,185,129,.25); }
+  .comm-badge.attending { background: rgba(139,92,246,.1); color: #a78bfa; border: 1px solid rgba(139,92,246,.25); }
+
+  .comm-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: .5rem;
+  }
+  .comm-desc { font-size: .85rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--surface);
+    text-align: center;
+  }
+
+  .contact-inner { max-width: 700px; margin: 0 auto; }
+
+  .contact-tagline {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .contact-tagline .accent { color: var(--azure); }
+
+  .contact-sub { color: var(--muted); margin-bottom: 2.5rem; font-size: 1.05rem; }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: .7rem 1.4rem;
+    border-radius: 10px;
+    font-size: .9rem;
+    font-weight: 500;
+    transition: border-color .2s, color .2s, transform .15s;
+  }
+  .contact-link:hover {
+    border-color: var(--azure);
+    color: var(--azure);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p { font-size: .8rem; color: var(--subtle); }
+  footer .footer-badge {
+    font-size: .75rem;
+    color: var(--muted);
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 3.5rem 1.25rem; }
+    #hero { padding: 6rem 1.25rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-highlights { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  /* ── MOBILE NAV TOGGLE ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: .25rem;
+  }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 1px; transition: .2s; }
+  @media (max-width: 768px) { .hamburger { display: flex; } }
+
+  /* Azure SVG logo placeholder */
+  .azure-logo {
+    width: 22px; height: 22px;
+    fill: var(--azure);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SSR<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certs</a>
+    <a href="#achievements">Awards</a>
+    <a href="#contact">Contact</a>
+    <a href="Resume_-_Shubhra_Shankha_Roy.pdf" class="nav-cta" target="_blank" download>↓ Resume</a>
+  </div>
+  <div class="hamburger" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Available for senior cloud leadership roles
+    </div>
+    <h1 class="hero-name">
+      Shubhra<br/>Shankha <span class="accent">Roy</span>
+    </h1>
+    <div class="hero-title">Cloud &amp; DevOps Manager · Microsoft Azure Specialist</div>
+    <p class="hero-summary">
+      13 years in IT. 7+ in cloud. Designing resilient Azure architectures, leading
+      platform engineering teams, and driving DevOps transformation for global enterprises.
+      Based in Kolkata — building at scale, every day.
+    </p>
+    <div class="hero-ctas">
+      <a href="#experience" class="btn-primary">View My Work</a>
+      <a href="Resume_-_Shubhra_Shankha_Roy.pdf" class="btn-secondary" download>↓ Download Resume</a>
+      <a href="https://www.linkedin.com/in/shubhra-shankha-roy" class="btn-secondary" target="_blank">LinkedIn ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">13<span>+</span></div>
+        <div class="stat-label">Years in IT</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">7<span>+</span></div>
+        <div class="stat-label">Years in Cloud</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50<span>+</span></div>
+        <div class="stat-label">VMs Migrated</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">35<span>%</span></div>
+        <div class="stat-label">Deployment Acceleration</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Architecture. <span class="accent">Automation.</span> Impact.</h2>
+        <p>I'm a Cloud &amp; DevOps Manager at EY Global Delivery Services India with deep specialization in Microsoft Azure. My work spans network architecture design, CI/CD pipeline optimization, IaC with Terraform, and Kubernetes-based container orchestration.</p>
+        <p>Before EY, I spent years at MOL Information Technology and Tata Consultancy Services — architecting hub-and-spoke networks, executing lift-and-shift migrations at scale, and coaching teams through cloud-first transformations.</p>
+        <p>I believe great infrastructure is invisible: it just works. My goal is always zero-downtime delivery, maximum cost efficiency, and systems that scale ahead of business needs.</p>
+      </div>
+      <div class="about-highlights reveal">
+        <div class="highlight-card">
+          <div class="highlight-icon">☁️</div>
+          <div class="highlight-title">Cloud Architecture</div>
+          <div class="highlight-desc">Hub-and-spoke, n-tier, HA/DR patterns on Azure</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">⚙️</div>
+          <div class="highlight-title">DevOps & CI/CD</div>
+          <div class="highlight-desc">Azure DevOps pipelines, 35% faster deployments</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🔒</div>
+          <div class="highlight-title">Cloud Security</div>
+          <div class="highlight-desc">Defender for Cloud, Sentinel, WAF, Zero Trust</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🚀</div>
+          <div class="highlight-title">Team Leadership</div>
+          <div class="highlight-desc">Managing 5+ engineers, 95% on-time delivery rate</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">📦</div>
+          <div class="highlight-title">IaC & Automation</div>
+          <div class="highlight-desc">Terraform, Ansible, PowerShell at enterprise scale</div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🐳</div>
+          <div class="highlight-title">Kubernetes & AKS</div>
+          <div class="highlight-desc">CKA certified, 99.9% availability, 3× scale-out</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label reveal">Technical Skills</div>
+    <h2 class="section-title reveal">What I Work <span class="accent">With</span></h2>
+    <p class="section-sub reveal">A curated stack built across enterprise environments — from network design to container orchestration.</p>
+
+    <div class="skills-categories">
+      <div class="skill-category reveal">
+        <div class="skill-cat-label">☁️ Azure Platform</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Azure VNet</span>
+          <span class="skill-tag">AKS</span>
+          <span class="skill-tag">App Gateway</span>
+          <span class="skill-tag">Azure Firewall</span>
+          <span class="skill-tag">Front Door</span>
+          <span class="skill-tag">Traffic Manager</span>
+          <span class="skill-tag">Azure DNS</span>
+          <span class="skill-tag">Azure Bastion</span>
+          <span class="skill-tag">Log Analytics</span>
+          <span class="skill-tag">Azure Monitor</span>
+          <span class="skill-tag">Application Insights</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-label">🛠️ DevOps & IaC</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Azure DevOps</span>
+          <span class="skill-tag">CI/CD Pipelines</span>
+          <span class="skill-tag">Terraform</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+          <span class="skill-tag">Helm</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">YAML</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-label">🔒 Security</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Microsoft Defender for Cloud</span>
+          <span class="skill-tag">Microsoft Sentinel</span>
+          <span class="skill-tag">WAF</span>
+          <span class="skill-tag">Conditional Access</span>
+          <span class="skill-tag">Private Endpoints</span>
+          <span class="skill-tag">RBAC</span>
+          <span class="skill-tag">NSG</span>
+          <span class="skill-tag">Azure AD</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-label">💻 Languages & Scripting</div>
+        <div class="skill-tags">
+          <span class="skill-tag secondary">PowerShell</span>
+          <span class="skill-tag secondary">Bash</span>
+          <span class="skill-tag secondary">Python</span>
+          <span class="skill-tag secondary">Azure CLI</span>
+          <span class="skill-tag secondary">PL/SQL</span>
+          <span class="skill-tag secondary">YAML</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-label">🌐 Networking</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Hub-and-Spoke</span>
+          <span class="skill-tag">VPN Gateway</span>
+          <span class="skill-tag">ExpressRoute</span>
+          <span class="skill-tag">Peering</span>
+          <span class="skill-tag">Private DNS</span>
+          <span class="skill-tag">UDR</span>
+          <span class="skill-tag">BGP</span>
+        </div>
+      </div>
+      <div class="skill-category reveal">
+        <div class="skill-cat-label">🤝 Leadership & Process</div>
+        <div class="skill-tags">
+          <span class="skill-tag secondary">Agile / Scrum</span>
+          <span class="skill-tag secondary">Stakeholder Mgmt</span>
+          <span class="skill-tag secondary">Team Mentorship</span>
+          <span class="skill-tag secondary">Cost Optimization</span>
+          <span class="skill-tag secondary">DR Planning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label reveal">Career</div>
+    <h2 class="section-title reveal">Work <span class="accent">Experience</span></h2>
+    <p class="section-sub reveal">13 years across enterprise IT, cloud infrastructure, and engineering leadership.</p>
+
+    <div class="timeline">
+      <!-- EY -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot current"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="tl-company">EY Global Delivery Services India LLP</div>
+              <div class="tl-role">Manager, Cloud &amp; DevOps · Kolkata</div>
+            </div>
+            <div class="tl-period current">Nov 2024 – Present</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Designed and implemented CI/CD pipelines with Azure DevOps, accelerating deployment time by <span class="metric">35%</span> and reducing failures by <span class="metric">50%</span> across Dev / QA / Staging / Production environments.</li>
+            <li>Optimized IaC workflows with Terraform, cutting cloud resource consumption by <span class="metric">25%</span> and operational costs by <span class="metric">18%</span>.</li>
+            <li>Leveraged Docker &amp; Kubernetes for containerized workloads — achieving <span class="metric">99.9%</span> application availability and enabling <span class="metric">3×</span> horizontal scaling.</li>
+            <li>Led a team of <span class="metric">5+</span> engineers with a <span class="metric">95%</span> on-time delivery rate, mentoring across architecture, automation, and Agile best practices.</li>
+            <li>Provided on-call support ensuring <span class="metric">99.95%</span> uptime, reducing MTTR by <span class="metric">30%</span>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- MOL -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="tl-company">MOL Information Technology India Pvt. Ltd.</div>
+              <div class="tl-role">Senior Analyst · Kolkata</div>
+            </div>
+            <div class="tl-period">Sep 2022 – Oct 2024</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Designed end-to-end Azure network architecture with topology diagrams, reducing downtime by <span class="metric">30%</span> and improving security posture significantly.</li>
+            <li>Implemented Application Gateway, Azure Front Door, and Traffic Manager — achieving a <span class="metric">30%</span> increase in network reliability and <span class="metric">40%</span> reduction in downtime.</li>
+            <li>Automated infrastructure deployment using Terraform via CI/CD, cutting provisioning time by <span class="metric">~50%</span>.</li>
+            <li>Enhanced WAF log analysis, reducing security incidents by <span class="metric">50%</span>.</li>
+            <li>Collaborated on Hub-and-Spoke architecture, delivering a <span class="metric">20%</span> reduction in cloud infrastructure costs.</li>
+            <li>Implemented Microsoft Defender for Cloud recommendations, improving security score by <span class="metric">15%</span>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TCS AC -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="tl-company">Tata Consultancy Services Ltd.</div>
+              <div class="tl-role">Assistant Consultant · Kolkata</div>
+            </div>
+            <div class="tl-period">Jul 2021 – Sep 2022</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Executed Lift-and-Shift migration of <span class="metric">50+</span> VMware systems to Azure using Azure Migrate, enhancing system efficiency by <span class="metric">25%</span>.</li>
+            <li>Established Site-to-Site VPN Gateways, securing connections for <span class="metric">10+</span> critical on-premise applications.</li>
+            <li>Architected n-tier applications with modular design enabling independent scaling and superior maintainability.</li>
+            <li>Achieved <span class="metric">20%</span> reduction in cloud expenditure through strategic budget management at subscription and resource group level.</li>
+            <li>Conducted Azure training sessions for <span class="metric">50+</span> team members, increasing team proficiency by <span class="metric">20%</span>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TCS IT Analyst -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="tl-company">Tata Consultancy Services Ltd.</div>
+              <div class="tl-role">IT Analyst · Kolkata &amp; Taiwan</div>
+            </div>
+            <div class="tl-period">Apr 2016 – Jun 2021</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Designed high-availability solutions using Azure Availability Sets, Zones, and VMSS — improving system uptime by <span class="metric">30%</span>.</li>
+            <li>Built comprehensive monitoring using Azure Monitor, Log Analytics, and Application Insights — reducing incident response time by <span class="metric">25%</span>.</li>
+            <li>Automated access restrictions for App Services and Storage Accounts with PowerShell, cutting configuration time by <span class="metric">50%</span>.</li>
+            <li>Designed NSG rules controlling inbound/outbound access across NICs, VMs, and subnets — increasing network security by <span class="metric">40%</span>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TCS SE -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <div class="tl-company">Tata Consultancy Services Ltd.</div>
+              <div class="tl-role">System Engineer · Kolkata</div>
+            </div>
+            <div class="tl-period">Dec 2011 – Mar 2016</div>
+          </div>
+          <ul class="tl-bullets">
+            <li>Configured Oracle iProcurement and SCM modules; developed and debugged PL/SQL code reducing errors by <span class="metric">25%</span>.</li>
+            <li>Provided production support with a <span class="metric">95%</span> resolution rate for day-to-day business issues.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-label reveal">Credentials</div>
+    <h2 class="section-title reveal">Certifications &amp; <span class="accent">Licenses</span></h2>
+    <p class="section-sub reveal">10 industry certifications spanning cloud architecture, security, networking, DevOps, and Kubernetes.</p>
+
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon azure-icon">🏗️</div>
+        <div class="cert-info">
+          <div class="cert-name">AZ-305: Solutions Architect Expert</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon azure-icon">🔐</div>
+        <div class="cert-info">
+          <div class="cert-name">AZ-500: Security Engineer Associate</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon azure-icon">🌐</div>
+        <div class="cert-info">
+          <div class="cert-name">AZ-700: Network Engineer Associate</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon azure-icon">⚙️</div>
+        <div class="cert-info">
+          <div class="cert-name">AZ-400: DevOps Solutions Expert</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon azure-icon">🛡️</div>
+        <div class="cert-info">
+          <div class="cert-name">AZ-104: Azure Administrator Associate</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon azure-icon">☁️</div>
+        <div class="cert-info">
+          <div class="cert-name">AZ-900: Azure Fundamentals</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon azure-icon">📊</div>
+        <div class="cert-info">
+          <div class="cert-name">DP-900: Azure Data Fundamentals</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon azure-icon">🔑</div>
+        <div class="cert-info">
+          <div class="cert-name">SC-900: Security, Compliance &amp; Identity</div>
+          <div class="cert-issuer">Microsoft</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon hashi-icon">🟣</div>
+        <div class="cert-info">
+          <div class="cert-name">Terraform Associate (003)</div>
+          <div class="cert-issuer">HashiCorp</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon linux-icon">⎈</div>
+        <div class="cert-info">
+          <div class="cert-name">CKA: Certified Kubernetes Administrator</div>
+          <div class="cert-issuer">The Linux Foundation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <div class="section-label reveal">Recognition</div>
+    <h2 class="section-title reveal">Achievements &amp; <span class="accent">Awards</span></h2>
+    <p class="section-sub reveal">Recognition for performance, leadership, and contribution to the cloud community.</p>
+
+    <div class="achievements-grid">
+      <div class="ach-card reveal">
+        <div class="ach-icon">📘</div>
+        <div class="ach-title">Technical Reviewer — AWS Cloud Practitioner's Exam Guide</div>
+        <div class="ach-desc">Featured by AVA™ (Orange Education Label) as a technical reviewer for the physical book, enhancing the accuracy and quality of AWS cloud certification resources.</div>
+        <span class="ach-org">Orange Education / AVA™</span>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">🏆</div>
+        <div class="ach-title">Achiever Extraordinaire Award</div>
+        <div class="ach-desc">Honored for exceptional performance, dedication, and impact delivered through team leadership and cross-functional collaboration at EY.</div>
+        <span class="ach-org">EY Global Delivery Services</span>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">⭐</div>
+        <div class="ach-title">Special Achievement Award</div>
+        <div class="ach-desc">Recognized for exceptional project execution and innovative solutions that drove significant organizational value.</div>
+        <span class="ach-org">Tata Consultancy Services</span>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">💡</div>
+        <div class="ach-title">Special Initiative Award</div>
+        <div class="ach-desc">Honored for outstanding initiative and leadership, driving impactful improvements and contributing to key organizational goals.</div>
+        <span class="ach-org">Tata Consultancy Services</span>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">🎖️</div>
+        <div class="ach-title">Service &amp; Commitment Award</div>
+        <div class="ach-desc">Celebrated for a decade of dedicated service, consistent professional growth, and long-term commitment to excellence.</div>
+        <span class="ach-org">Tata Consultancy Services</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="section-inner">
+    <div class="section-label reveal">Community</div>
+    <h2 class="section-title reveal">Tech Community <span class="accent">Presence</span></h2>
+    <p class="section-sub reveal">Speaking, mentoring, reviewing, and building connections across India's cloud native ecosystem.</p>
+
+    <div class="community-grid">
+      <div class="community-card reveal">
+        <div class="comm-badge attending">🎟️ Attending</div>
+        <div class="comm-title">KubeCon + CloudNativeCon India 2026</div>
+        <div class="comm-desc">Attending KubeCon Mumbai 2026 at Jio World Convention Centre (June 18–19) — immersing in the latest from the CNCF ecosystem.</div>
+      </div>
+      <div class="community-card reveal">
+        <div class="comm-badge speaking">🎤 Organizer</div>
+        <div class="comm-title">Global Azure Kolkata 2026</div>
+        <div class="comm-desc">Active contributor to Global Azure Kolkata at Techno India Campus, Salt Lake — bringing the Azure community together across Eastern India.</div>
+      </div>
+      <div class="community-card reveal">
+        <div class="comm-badge mentoring">🧭 Mentoring</div>
+        <div class="comm-title">Cloud Mentorship via Topmate &amp; LinkedIn</div>
+        <div class="comm-desc">Mentoring learners on Azure, DevOps, Kubernetes, and career paths in cloud engineering — guiding the next generation of cloud professionals.</div>
+      </div>
+      <div class="community-card reveal">
+        <div class="comm-badge reviewing">✍️ Author / Reviewer</div>
+        <div class="comm-title">Technical Book Reviewer</div>
+        <div class="comm-desc">Contributed as a technical reviewer for the "AWS Cloud Practitioner's Exam Guide" — ensuring accuracy and quality for thousands of learners worldwide.</div>
+      </div>
+      <div class="community-card reveal">
+        <div class="comm-badge attending">🌐 Community</div>
+        <div class="comm-title">Cloud Native Kolkata &amp; CLOUDxAI Bengaluru</div>
+        <div class="comm-desc">Regular participant at Cloud Native Kolkata meetups and CLOUDxAI Bengaluru — staying at the frontier of cloud-native and AI infrastructure trends.</div>
+      </div>
+      <div class="community-card reveal">
+        <div class="comm-badge mentoring">📝 Thought Leader</div>
+        <div class="comm-title">LinkedIn Articles &amp; Content Creation</div>
+        <div class="comm-desc">Publishing technical content on Azure architecture, DevOps practices, certification guides, and industry insights for a growing professional audience.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <div class="section-label reveal" style="justify-content:center">Get In Touch</div>
+      <h2 class="contact-tagline reveal">Let's Build Something <span class="accent">Cloud-Native</span></h2>
+      <p class="contact-sub reveal">Open to senior cloud architecture, DevOps leadership, and platform engineering roles. Also happy to connect on community, mentoring, or speaking opportunities.</p>
+
+      <div class="contact-links reveal">
+        <a href="mailto:shubhraroy23@outlook.com" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          shubhraroy23@outlook.com
+        </a>
+        <a href="https://www.linkedin.com/in/shubhra-shankha-roy" class="contact-link" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="tel:+919474092775" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.6a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 94740 92775
+        </a>
+        <a href="Resume_-_Shubhra_Shankha_Roy.pdf" class="contact-link" download>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+      </div>
+
+      <p class="reveal" style="color:var(--subtle);font-size:.8rem;">📍 Kolkata, India &nbsp;·&nbsp; Open to remote &amp; hybrid &nbsp;·&nbsp; Willing to relocate</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Shubhra Shankha Roy · Cloud &amp; DevOps Manager</p>
+  <p class="footer-badge">Built with HTML · Hosted on GitHub Pages</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth active nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current ? 'var(--azure)' : '';
+    });
+  });
+</script>
+</body>
+</html>
